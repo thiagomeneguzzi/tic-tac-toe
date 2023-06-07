@@ -1,0 +1,23 @@
+.card {
+	width: 10rem;
+	height: 10rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	border: 0.25rem solid gray;
+}
+
+.optionX, .optionO {
+	font-size: 2rem;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+.optionX {
+	color: red;
+}
+
+.optionO {
+	color: #444444;
+}
