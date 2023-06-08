@@ -4,9 +4,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from '../../application/pages/Layout/Layout';
 
 import TwoPlayers from '../../application/pages/twoPlayers/TwoPlayers';
+import Home from '../../application/pages/Home/Home';
 
 const Router = (): JSX.Element => {
     const routes = [
+        {
+            path: '/',
+            element: <Home />,
+        },
         {
             path: '/two-players',
             element: <TwoPlayers />,
@@ -26,12 +31,7 @@ const Router = (): JSX.Element => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route
-                    path='/'
-                    element={<Layout />}
-                >
-                    {mountRoutes()}
-                </Route>
+                <Route element={<Layout />}>{mountRoutes()}</Route>
             </Routes>
         </BrowserRouter>
     );
