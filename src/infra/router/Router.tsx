@@ -1,23 +1,21 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from '../../application/pages/Layout/Layout';
 import TwoPlayers from '../../application/pages/twoPlayers/TwoPlayers';
 
 const Router = (): JSX.Element => {
-    const router = createBrowserRouter([
-        {
-            path: '/',
-            element: <Layout />,
-            children: [
-                {
-                    path: 'two-players',
-                    element: <TwoPlayers />,
-                },
-            ],
-        },
-    ]);
-
-    return <RouterProvider router={router} />;
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route element={<Layout />}>
+                    <Route
+                        element={<TwoPlayers />}
+                        path='two-players'
+                    />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 };
 
 export default Router;
