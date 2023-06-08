@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-	@apply bg-gray-800 font-serif;
+	@apply bg-gray-800 font-serif h-screen;
 
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;

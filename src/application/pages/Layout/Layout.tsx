@@ -1,32 +1,30 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 import Drawer from '../../components/Drawer/Drawer';
 
 const Layout = () => {
-    const [open, setOpen] = useState<boolean>(false);
-
-    const drawerSize = (document.getElementById('drawerContainer')?.clientHeight || 0) > 0;
+    const greaterThan1024 = window.innerWidth > 1024;
+    const [open, setOpen] = useState<boolean>(greaterThan1024);
 
     return (
-        <div className='flex h-screen'>
-            <div className='relative'>
-                <div
-                    id='drawerContainer'
-                    className={`flex-none h-0 w-0 ${open ? 'animate-drawer-open' : drawerSize ? 'animate-drawer-close' : 'invisible'}`}
-                >
+        <div className='flex h-screen relative'>
+            <div className={`z-10 absolute h-full w-[256px] left-0 transition-all duration-1000 ${open ? '' : 'left-[-256px]'}`}>
+                <div className='flex-none absolute w-full h-full'>
                     <Drawer open={open} />
                 </div>
                 <button
                     type='button'
                     onClick={() => setOpen(!open)}
-                    className='absolute top-0 right-[-48px] bg-white rounded-r-full w-[48px] text-2xl'
+                    className={`absolute top-10 right-[-42px] bg-white rounded-full p-3 text-2xl ${open ? '' : 'rotate-180'}`}
                 >
-                    {open ? '<-' : '->'}
+                    <AiOutlineArrowLeft />
                 </button>
             </div>
-            <div className='flex-1'>
+            <div className='relative h-full flex-1'>
+                {!greaterThan1024 && <div className={`absolute w-full h-full bg-gray-900 duration-1000 ${open ? 'opacity-80' : 'opacity-0'}`} />}
                 <Outlet />
             </div>
         </div>
