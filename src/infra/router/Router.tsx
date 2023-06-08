@@ -7,7 +7,10 @@ const Router = (): JSX.Element => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<Layout />}>
+                <Route
+                    path='/'
+                    element={<Layout />}
+                >
                     <Route
                         element={<TwoPlayers />}
                         path='two-players'
