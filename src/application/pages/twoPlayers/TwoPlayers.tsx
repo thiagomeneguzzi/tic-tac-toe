@@ -47,7 +47,7 @@ const TwoPlayers = () => {
     };
 
     return (
-        <div className='flex flex-col justify-center items-center w-full h-full'>
+        <div className='flex flex-col justify-center items-center w-full h-full px-4'>
             {winner && <h1>O vencedor foi o Jogador {winner}</h1>}
             {gotOld && <h1>Deu velha!</h1>}
             {(winner || gotOld) && (
@@ -59,7 +59,7 @@ const TwoPlayers = () => {
                     Reiniciar
                 </button>
             )}
-            <div className='grid grid-rows-3 grid-flow-col gap-2'>
+            <div className='grid grid-rows-3 grid-flow-col gap-2 w-full h-full max-w-[24rem] max-h-[24rem]'>
                 {gameStateOptions.map((option, index) => (
                     <GameCard
                         value={option}

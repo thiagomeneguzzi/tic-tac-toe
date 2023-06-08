@@ -11,19 +11,21 @@ const Layout = () => {
 
     return (
         <div className='flex h-screen'>
-            <div
-                id='drawerContainer'
-                className={`flex-none h-0 w-0 ${open ? 'animate-drawer-open' : drawerSize ? 'animate-drawer-close' : 'invisible'}`}
-            >
-                <Drawer open={open} />
+            <div className='relative'>
+                <div
+                    id='drawerContainer'
+                    className={`flex-none h-0 w-0 ${open ? 'animate-drawer-open' : drawerSize ? 'animate-drawer-close' : 'invisible'}`}
+                >
+                    <Drawer open={open} />
+                </div>
+                <button
+                    type='button'
+                    onClick={() => setOpen(!open)}
+                    className='absolute top-0 right-[-48px] bg-white rounded-r-full w-[48px] text-2xl'
+                >
+                    {open ? '<-' : '->'}
+                </button>
             </div>
-            <button
-                type='button'
-                onClick={() => setOpen(!open)}
-                className='self-start bg-white rounded-r-full w-[48px] text-2xl'
-            >
-                {open ? '<-' : '->'}
-            </button>
             <div className='flex-1'>
                 <Outlet />
             </div>
