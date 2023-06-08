@@ -11,7 +11,7 @@ const Layout = () => {
 
     return (
         <div className='flex h-screen relative'>
-            <div className={`z-10 absolute h-full w-[256px] left-0 transition-all duration-1000 ${open ? '' : 'left-[-256px]'}`}>
+            <div className={`z-20 absolute h-full w-[256px] left-0 transition-all duration-1000 ${open ? '' : 'left-[-256px]'}`}>
                 <div className='flex-none absolute w-full h-full'>
                     <Drawer open={open} />
                 </div>
@@ -24,7 +24,7 @@ const Layout = () => {
                 </button>
             </div>
             <div className='relative h-full flex-1'>
-                {!greaterThan1024 && <div className={`absolute w-full h-full bg-gray-900 duration-1000 ${open ? 'opacity-80' : 'opacity-0'}`} />}
+                {open && <div className='absolute w-full h-full bg-gray-900 duration-1000 opacity-80' />}
                 <Outlet />
             </div>
         </div>
