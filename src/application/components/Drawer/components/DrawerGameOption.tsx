@@ -12,12 +12,15 @@ const DrawerGameOption: FC<Props> = (props) => {
     const navigate = useNavigate();
 
     const handleRedirect = () => {
-        navigate(route);
+        if (route) {
+            navigate(route);
+        }
     };
 
     return (
         <button
             type='button'
+            className='bg-gray-400 rounded-lg border-[1px] border-gray-300 text-white font-bold text-lg py-4 w-5/6'
             onClick={handleRedirect}
         >
             {label}

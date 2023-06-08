@@ -25,10 +25,18 @@ const Drawer: FC<Props> = (props) => {
                     <h1 className='text-5xl'>{words.gameMode.gameTitle}</h1>
                     <h3 className='text-xl'>{words.gameMode.selectGameMode}</h3>
                 </div>
-                <div className='flex flex-col gap-4 py-4'>
+                <div className='flex flex-col items-center gap-4 py-4'>
+                    <DrawerGameOption
+                        label={words.gameMode.localSinglePlayer}
+                        route='/two-players'
+                    />
                     <DrawerGameOption
                         label={words.gameMode.localMultiplayer}
-                        route='/two-players'
+                        route=''
+                    />
+                    <DrawerGameOption
+                        label={words.gameMode.multiplayer}
+                        route=''
                     />
                 </div>
             </div>

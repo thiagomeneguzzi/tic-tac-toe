@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import GameCard from '../../components/GameCard/GameCard';
+import GameBoard from '../../components/GameBoard/GameBoard';
 
 import { initialValue } from '../../../utils/consts/game';
 import gameServiceImpl from '../../../services/implementation/gameServiceImpl/gameServiceImpl';
@@ -15,26 +15,28 @@ const TwoPlayers = () => {
     const [gotOld, setGotOld] = useState<boolean>(false);
 
     const handleOptionMark = (index: number): void => {
-        const tempOptions = [...gameStateOptions];
+        if (!winner && !gotOld) {
+            const tempOptions = [...gameStateOptions];
 
-        if (tempOptions[index] !== '') {
-            return;
-        }
+            if (tempOptions[index] !== '') {
+                return;
+            }
 
-        tempOptions[index] = turnOption;
-        setGameStateOptions(tempOptions);
+            tempOptions[index] = turnOption;
+            setGameStateOptions(tempOptions);
 
-        const hasWinner = gameServiceImpl.verifyWinner(tempOptions, turnOption);
+            const hasWinner = gameServiceImpl.verifyWinner(tempOptions, turnOption);
 
-        if (hasWinner) {
-            setWinner(turnOption);
-        } else {
-            const endGame = gameServiceImpl.verifyGotOld(tempOptions);
-
-            if (endGame) {
-                setGotOld(true);
+            if (hasWinner) {
+                setWinner(turnOption);
             } else {
-                setTurnOption((prevState) => (prevState === 'X' ? 'O' : 'X'));
+                const endGame = gameServiceImpl.verifyGotOld(tempOptions);
+
+                if (endGame) {
+                    setGotOld(true);
+                } else {
+                    setTurnOption((prevState) => (prevState === 'X' ? 'O' : 'X'));
+                }
             }
         }
     };
@@ -48,25 +50,23 @@ const TwoPlayers = () => {
 
     return (
         <div className='flex flex-col justify-center items-center w-full h-full px-4'>
-            {winner && <h1>O vencedor foi o Jogador {winner}</h1>}
-            {gotOld && <h1>Deu velha!</h1>}
+            {winner && <h1 className='text-2xl text-white font-bold'>Parabéns jogador {winner}, você ganhou!</h1>}
+            {gotOld && <h1 className='text-2xl text-white font-bold'>Deu velha!</h1>}
+            <div className='py-4'>
+                <GameBoard
+                    gameState={gameStateOptions}
+                    handleOptionMark={handleOptionMark}
+                />
+            </div>
             {(winner || gotOld) && (
                 <button
                     type='button'
-                    className='px-1 py-2'
+                    className='px-4 py-2 text-white text-bold bg-gray-300 rounded-full'
                     onClick={resetGame}
                 >
                     Reiniciar
                 </button>
             )}
-            <div className='grid grid-rows-3 grid-flow-col gap-1'>
-                {gameStateOptions.map((option, index) => (
-                    <GameCard
-                        value={option}
-                        onClick={() => handleOptionMark(index)}
-                    />
-                ))}
-            </div>
         </div>
     );
 };
