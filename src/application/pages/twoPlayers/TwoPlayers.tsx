@@ -59,7 +59,7 @@ const TwoPlayers = () => {
                     Reiniciar
                 </button>
             )}
-            <div className='grid grid-rows-3 grid-flow-col gap-2 w-full h-full max-w-[24rem] max-h-[24rem]'>
+            <div className='grid grid-rows-3 grid-flow-col gap-1'>
                 {gameStateOptions.map((option, index) => (
                     <GameCard
                         value={option}
