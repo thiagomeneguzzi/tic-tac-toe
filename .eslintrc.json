@@ -1,0 +1,146 @@
+{
+	"extends": [
+		"airbnb",
+		"prettier"
+	],
+	"parser": "@typescript-eslint/parser",
+	"plugins": [
+		"@typescript-eslint",
+		"html",
+		"import",
+		"jsx-a11y",
+		"react",
+		"react-hooks"
+	],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 2021,
+		"project": "./tsconfig.json"
+	},
+	"overrides": [
+		{
+			"files": [
+				"*.js",
+				"*.jsx"
+			],
+			"rules": {
+				"indent": "off"
+			}
+		},
+		{
+			"files": [
+				"*.ts",
+				"*.tsx"
+			],
+			"extends": [
+				"airbnb-typescript/base",
+				"plugin:@typescript-eslint/recommended",
+				"plugin:@typescript-eslint/recommended-requiring-type-checking",
+				"prettier"
+			],
+			"rules": {
+				"indent": "off",
+				"@typescript-eslint/indent": "off",
+				"@typescript-eslint/no-use-before-define": 0,
+				"@typescript-eslint/no-floating-promises": "off",
+				"@typescript-eslint/no-unsafe-assignment": "off",
+				"@typescript-eslint/no-unsafe-member-access": "off",
+				"@typescript-eslint/no-unsafe-call": "off",
+				"@typescript-eslint/no-unsafe-argument": "off",
+				"@typescript-eslint/no-unsafe-return": "off"
+			}
+		}
+	],
+	"rules": {
+		"arrow-body-style": [
+			0,
+			"as-needed"
+		],
+		"eqeqeq": 2,
+		"global-require": 0,
+		"indent": [
+			2,
+			4
+		],
+		"linebreak-style": 0,
+		"max-lines": [
+			2,
+			300
+		],
+		"new-cap": 0,
+		"no-console": 2,
+		"no-else-return": [
+			2,
+			{
+				"allowElseIf": false
+			}
+		],
+		"no-empty-function": [
+			2,
+			{
+				"allow": [
+					"constructors"
+				]
+			}
+		],
+		"no-plusplus": 0,
+		"no-restricted-globals": 1,
+		"no-restricted-syntax": 0,
+		// "no-restricted-imports": [],
+		"no-return-assign": 0,
+		"no-shadow": 1,
+		"no-undef": 2,
+		"no-underscore-dangle": 0,
+		"no-use-before-define": 0,
+		"no-useless-constructor": 2,
+		"padded-blocks": 0,
+		"radix": 0,
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"ts": "never",
+				"tsx": "never",
+				"js": "never",
+				"jsx": "never"
+			}
+		],
+		"import/no-cycle": 0,
+		"import/no-useless-path-segments": 0,
+		"react/forbid-prop-types": 0,
+		"react/jsx-filename-extension": [
+			0,
+			{
+				"extensions": [
+					".tsx"
+				]
+			}
+		],
+		"react/jsx-fragments": 0,
+		"react/jsx-no-bind": [
+			0,
+			{
+				"allowArrowFunctions": true
+			}
+		],
+		"react/no-unused-state": 1,
+		"react/prop-types": 0,
+		"react/jsx-props-no-spreading": 1,
+		"react-hooks/exhaustive-deps": "warn",
+		"react-hooks/rules-of-hooks": "error",
+		"react/function-component-definition": [
+			"error",
+			{
+				"namedComponents": "arrow-function",
+				"unnamedComponents": "arrow-function"
+			}
+		]
+	},
+	"settings": {
+		"import/resolver": {
+			"typescript": {}
+		}
+	}
+}

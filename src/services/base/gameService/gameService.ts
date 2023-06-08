@@ -1,5 +1,5 @@
 import { GameService } from "./gameServiceDomain";
-import { possibleWinsIndex } from "../../utils/consts/game";
+import { possibleWinsIndex } from "../../../utils/consts/game";
 
 const gameService: GameService = {
 	verifyWinner(options, currentTurn) {
