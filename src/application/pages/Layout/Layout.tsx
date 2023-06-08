@@ -24,7 +24,7 @@ const Layout = () => {
                 </button>
             </div>
             <div className='relative h-full flex-1'>
-                {open && <div className='absolute w-full h-full bg-gray-900 duration-1000 opacity-80' />}
+                {open && !greaterThan1024 && <div className='absolute w-full h-full bg-gray-900 duration-1000 opacity-80' />}
                 <Outlet />
             </div>
         </div>
