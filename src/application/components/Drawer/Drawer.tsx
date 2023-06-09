@@ -28,7 +28,7 @@ const Drawer: FC<Props> = (props) => {
                 <div className='flex flex-col items-center gap-4 py-4'>
                     <DrawerGameOption
                         label={words.gameMode.localSinglePlayer}
-                        route=''
+                        route='/single-player'
                     />
                     <DrawerGameOption
                         label={words.gameMode.localMultiplayer}

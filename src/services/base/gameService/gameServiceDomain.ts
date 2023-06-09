@@ -1,6 +1,7 @@
-import { Options } from "../../../utils/types/game";
+import { Options } from '../../../utils/types/game';
 
 export type GameService = {
-	verifyWinner: (options: Options, currentTurn: Options[0]) => boolean;
-	verifyGotOld: (options: Options) => boolean;
-}
+    verifyWinner: (options: Options, currentTurn: Options[0]) => boolean;
+    verifyGotOld: (options: Options) => boolean;
+    getComputerTurnIndex: (options: Options) => number;
+};

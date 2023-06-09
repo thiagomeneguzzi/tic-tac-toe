@@ -1,6 +1,7 @@
-import { GameService } from "../../base/gameService/gameServiceDomain";
+import { GameService } from '../../base/gameService/gameServiceDomain';
 
 export type GameServiceImpl = {
-	verifyWinner: GameService['verifyWinner'];
-	verifyGotOld: GameService['verifyGotOld'];
-}
+    verifyWinner: GameService['verifyWinner'];
+    verifyGotOld: GameService['verifyGotOld'];
+    getComputerTurnIndex: GameService['getComputerTurnIndex'];
+};

@@ -3,8 +3,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from '../../application/pages/Layout/Layout';
 
-import TwoPlayers from '../../application/pages/twoPlayers/TwoPlayers';
 import Home from '../../application/pages/Home/Home';
+import TwoPlayers from '../../application/pages/twoPlayers/TwoPlayers';
+import SinglePlayer from '../../application/pages/singlePlayer/SinglePlayer';
 
 const Router = (): JSX.Element => {
     const routes = [
@@ -15,6 +16,10 @@ const Router = (): JSX.Element => {
         {
             path: '/two-players',
             element: <TwoPlayers />,
+        },
+        {
+            path: '/single-player',
+            element: <SinglePlayer />,
         },
     ];
 
