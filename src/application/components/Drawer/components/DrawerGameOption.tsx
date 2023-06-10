@@ -12,7 +12,7 @@ const DrawerGameOption: FC<Props> = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const isActive = route.includes(location.pathname);
+    const isActive = location.pathname.length > 2 ? route.includes(location.pathname) : false;
 
     const handleRedirect = () => {
         if (route) {
