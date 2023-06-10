@@ -30,11 +30,22 @@ const LanguageProvider: FC<Props> = ({ children }) => {
         return languages.find((lang) => lang.code === language) as Language;
     }, [language]);
 
+    const getTextWithParams = (text: string, params: string[]) => {
+        let textToReplace = structuredClone(text);
+
+        params.forEach((param, index) => {
+            textToReplace = textToReplace.replace(`${index + 1}#`, param);
+        });
+
+        return textToReplace;
+    };
+
     const contextValue = useMemo(
         () => ({
             language,
             setLanguage,
             selectedLanguage,
+            getTextWithParams,
         }),
         [language, selectedLanguage],
     );

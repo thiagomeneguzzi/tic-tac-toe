@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Props = {
     label: string;
@@ -10,6 +10,9 @@ const DrawerGameOption: FC<Props> = (props) => {
     const { label, route } = props;
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const isActive = route.includes(location.pathname);
 
     const handleRedirect = () => {
         if (route) {
@@ -20,7 +23,9 @@ const DrawerGameOption: FC<Props> = (props) => {
     return (
         <button
             type='button'
-            className='bg-gray-400 rounded-lg border-[1px] border-gray-300 text-white font-bold text-lg py-4 w-5/6'
+            className={`rounded-lg border-[1px] font-bold text-lg py-4 w-5/6 ${
+                isActive ? 'bg-gray-50 text-black border-black' : 'bg-gray-400 text-white border-gray-300'
+            }`}
             onClick={handleRedirect}
         >
             {label}

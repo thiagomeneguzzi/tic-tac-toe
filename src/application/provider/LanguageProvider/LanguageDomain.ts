@@ -15,6 +15,18 @@ export type Language = {
             localSinglePlayer: string;
             multiplayer: string;
         };
+        game: {
+            draw: string;
+            reset: string;
+        };
+        localSinglePlayerGame: {
+            waitingCpu: string;
+            victory: string;
+            lose: string;
+        };
+        localMultiplayerGame: {
+            victory: string;
+        };
     };
     languages: {
         usaEnglish: LanguageCodeLabel;
@@ -26,4 +38,5 @@ export type LanguageContextDomain = {
     language: string;
     setLanguage: Dispatch<SetStateAction<string>>;
     selectedLanguage: Language;
+    getTextWithParams: (text: string, params: string[]) => string;
 };

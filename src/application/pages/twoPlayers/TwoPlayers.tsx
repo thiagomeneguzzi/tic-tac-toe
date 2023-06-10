@@ -6,8 +6,14 @@ import { initialValue } from '../../../utils/consts/game';
 import gameServiceImpl from '../../../services/implementation/gameServiceImpl/gameServiceImpl';
 
 import { Options } from '../../../utils/types/game';
+import { useLanguage } from '../../provider/LanguageProvider/LanguageProvider';
 
 const TwoPlayers = () => {
+    const {
+        selectedLanguage: { words },
+        getTextWithParams,
+    } = useLanguage();
+
     const [gameStateOptions, setGameStateOptions] = useState<Options>(initialValue);
     const [turnOption, setTurnOption] = useState<'X' | 'O'>('X');
 
@@ -50,8 +56,8 @@ const TwoPlayers = () => {
 
     return (
         <div className='flex flex-col justify-center items-center w-full h-full px-4'>
-            {winner && <h1 className='text-2xl text-white font-bold'>Parabéns jogador {winner}, você ganhou!</h1>}
-            {gotOld && <h1 className='text-2xl text-white font-bold'>Deu velha!</h1>}
+            {winner && <h1 className='text-2xl text-white font-bold'>{getTextWithParams(words.localMultiplayerGame.victory, [winner])}</h1>}
+            {gotOld && <h1 className='text-2xl text-white font-bold'>{words.game.draw}</h1>}
             <div className='py-4'>
                 <GameBoard
                     gameState={gameStateOptions}
@@ -64,7 +70,7 @@ const TwoPlayers = () => {
                     className='px-4 py-2 text-white text-bold bg-gray-300 rounded-full'
                     onClick={resetGame}
                 >
-                    Reiniciar
+                    {words.game.reset}
                 </button>
             )}
         </div>

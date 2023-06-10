@@ -1,15 +1,9 @@
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent } from 'react';
 import { useLanguage } from '../../provider/LanguageProvider/LanguageProvider';
 
 import DrawerGameOption from './components/DrawerGameOption';
 
-type Props = {
-    open: boolean;
-};
-
-const Drawer: FC<Props> = (props) => {
-    const { open } = props;
-
+const Drawer = () => {
     const { selectedLanguage, setLanguage, language } = useLanguage();
     const { languages, words } = selectedLanguage;
 
@@ -46,7 +40,12 @@ const Drawer: FC<Props> = (props) => {
                     onChange={handleLanguage}
                 >
                     {Object.values(languages).map((lang) => (
-                        <option value={lang.code}>{lang.label}</option>
+                        <option
+                            key={lang.code}
+                            value={lang.code}
+                        >
+                            {lang.label}
+                        </option>
                     ))}
                 </select>
             </div>

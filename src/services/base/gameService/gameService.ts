@@ -1,6 +1,8 @@
 import { GameService } from './gameServiceDomain';
 import { possibleWinsIndex } from '../../../utils/consts/game';
 
+const MIDDLE_BOARD_INDEX = 4;
+
 const gameService: GameService = {
     verifyWinner(options, currentTurn) {
         return possibleWinsIndex.some((possible) => {
@@ -13,9 +15,9 @@ const gameService: GameService = {
         });
     },
     getComputerTurnIndex(options) {
-        let index;
+        let index = -1;
 
-        const teste = possibleWinsIndex.map((possibility) => {
+        const currentGameIndexes = possibleWinsIndex.map((possibility) => {
             return possibility.reduce(
                 (cases, currentValue) => {
                     const currentCases = { ...cases };
@@ -43,10 +45,46 @@ const gameService: GameService = {
             );
         });
 
-        while (!index) {
-            const randomIndex = Math.floor(Math.random() * options.length);
-            if (!options[randomIndex]) {
-                index = randomIndex;
+        const cpuPossibleWin = currentGameIndexes.find((curGame) => curGame.cpu === 2 && curGame.empty > 0);
+
+        let playerPossibleWin;
+        if (!cpuPossibleWin) {
+            playerPossibleWin = currentGameIndexes.find((curGame) => curGame.player === 2 && curGame.empty > 0);
+
+            if (playerPossibleWin) {
+                playerPossibleWin.possibility.forEach((optionIndex) => {
+                    if (!options[optionIndex]) {
+                        index = optionIndex;
+                    }
+                });
+            }
+        } else {
+            cpuPossibleWin.possibility.forEach((optionIndex) => {
+                if (!options[optionIndex]) {
+                    index = optionIndex;
+                }
+            });
+        }
+
+        if (index < 0) {
+            const cpuWithOneOption = currentGameIndexes.filter((curGame) => curGame.cpu === 1 && curGame.empty > 0);
+            const randomIndexWithCpuOptions = Math.floor(Math.random() * cpuWithOneOption.length);
+            const cpuOneOptionToUse = cpuWithOneOption[randomIndexWithCpuOptions];
+
+            if (cpuOneOptionToUse) {
+                while (index < 0) {
+                    const randomIndex = Math.floor(Math.random() * cpuOneOptionToUse.possibility.length);
+                    if (!options[randomIndex]) {
+                        index = randomIndex;
+                    }
+                }
+            } else if (!options[MIDDLE_BOARD_INDEX]) {
+                index = MIDDLE_BOARD_INDEX;
+            } else {
+                const randomIndex = Math.floor(Math.random() * options.length);
+                if (!options[randomIndex]) {
+                    index = randomIndex;
+                }
             }
         }
 

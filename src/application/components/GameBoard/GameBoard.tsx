@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
 import GameCard from '../GameCard/GameCard';
@@ -14,6 +15,7 @@ const GameBoard = ({ gameState, handleOptionMark }: Props): JSX.Element => {
         <div className='grid grid-rows-3 grid-flow-col gap-1'>
             {gameState.map((option, index) => (
                 <GameCard
+                    key={index}
                     value={option}
                     onClick={() => handleOptionMark(index)}
                 />
