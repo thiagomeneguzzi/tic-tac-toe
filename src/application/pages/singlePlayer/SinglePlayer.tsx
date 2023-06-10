@@ -20,7 +20,7 @@ const SinglePlayer = () => {
     const [draw, setDraw] = useState<boolean>(false);
     const [computerLoading, setComputerLoading] = useState<boolean>(false);
 
-    const cpuTurnReference = useRef<NodeJS.Timeout | undefined>(undefined);
+    const cpuTurnReference = useRef<ReturnType<typeof setTimeout>>();
 
     const handleOptionMark = (index: number): void => {
         if (!winner && !draw && !cpuTurnReference.current) {
