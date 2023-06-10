@@ -13,7 +13,7 @@ const Layout = () => {
         <div className='flex h-screen relative'>
             <div className={`z-20 absolute h-full w-[256px] left-0 transition-all duration-1000 ${open ? '' : 'left-[-256px]'}`}>
                 <div className='flex-none absolute w-full h-full'>
-                    <Drawer open={open} />
+                    <Drawer />
                 </div>
                 <button
                     type='button'
