@@ -30,7 +30,7 @@ const Drawer = () => {
                     />
                     <DrawerGameOption
                         label={words.gameMode.multiplayer}
-                        route=''
+                        route='/multiplayer'
                     />
                 </div>
             </div>

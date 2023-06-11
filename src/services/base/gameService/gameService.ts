@@ -1,8 +1,6 @@
 import { GameService } from './gameServiceDomain';
 import { possibleWinsIndex } from '../../../utils/consts/game';
 
-const MIDDLE_BOARD_INDEX = 4;
-
 const gameService: GameService = {
     verifyWinner(options, currentTurn) {
         return possibleWinsIndex.some((possible) => {
@@ -78,8 +76,6 @@ const gameService: GameService = {
                         index = randomIndex;
                     }
                 }
-            } else if (!options[MIDDLE_BOARD_INDEX]) {
-                index = MIDDLE_BOARD_INDEX;
             } else {
                 const randomIndex = Math.floor(Math.random() * options.length);
                 if (!options[randomIndex]) {
