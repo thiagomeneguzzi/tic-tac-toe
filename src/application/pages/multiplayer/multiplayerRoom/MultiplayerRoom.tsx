@@ -51,7 +51,6 @@ const MultiplayerRoom = () => {
         });
 
         socket.on('join_room_client', (response) => {
-            console.log({ response });
             setRoom(response);
         });
 
@@ -59,30 +58,34 @@ const MultiplayerRoom = () => {
             handlePlay(response);
         });
 
+        socket.on('reset_client', (response) => {
+            setRoom(response);
+        });
+
         socket.connect();
 
         return () => {
             socket.off('join_room_client');
+            socket.off('reset_client');
             socket.off('play_client');
+            socket.disconnect();
         };
     }, []);
     console.log({ room });
 
-    const [gameStateOptions] = useState<Options>(initialValue);
     const [turnOption] = useState<'X' | 'O'>('X');
 
-    const [winner] = useState<'X' | 'O'>();
-    const [gotOld] = useState<boolean>(false);
+    const playerTurn = room.turn.user.userName === name;
 
     const handleOptionMark = (index: number): void => {
-        if (!winner && !gotOld) {
+        if (!room.winner && !room.draw && playerTurn) {
             const tempOptions = [...room.gameState];
 
             if (tempOptions[index] !== '') {
                 return;
             }
 
-            tempOptions[index] = turnOption;
+            tempOptions[index] = room.turn.item;
 
             socket.emit('play', { roomId: room?.id || '', gameState: tempOptions });
         }
@@ -92,22 +95,29 @@ const MultiplayerRoom = () => {
         setRoom(newRoomData);
     };
 
-    const resetGame = (): void => {};
+    const resetGame = (): void => {
+        socket.emit('reset', { roomId: room.id });
+    };
 
     return (
         <div className='flex flex-col justify-center items-center w-full h-full px-4'>
             {room.users.length === 2 ? (
                 <>
-                    {winner && <h1 className='text-2xl text-white font-bold'>{getTextWithParams(words.localMultiplayerGame.victory, [winner])}</h1>}
-                    {gotOld && <h1 className='text-2xl text-white font-bold'>{words.game.draw}</h1>}
-                    {room.turn.user.userName !== name && <h1 className='text-2xl text-white font-bold'>Aguardando jogador...</h1>}
+                    {room.winner && room.winner === name && (
+                        <h1 className='text-2xl text-white font-bold'>{getTextWithParams(words.localMultiplayerGame.victory, [room.winner])}</h1>
+                    )}
+                    {room.winner && room.winner !== name && <h1 className='text-2xl text-white font-bold'>Ops, você perdeu</h1>}
+                    {room.draw && <h1 className='text-2xl text-white font-bold'>{words.game.draw}</h1>}
+                    {room.turn.user.userName !== name && !room.winner && !room.draw && (
+                        <h1 className='text-2xl text-white font-bold'>Aguardando jogador...</h1>
+                    )}
                     <div className='py-4'>
                         <GameBoard
-                            gameState={gameStateOptions}
+                            gameState={room.gameState}
                             handleOptionMark={handleOptionMark}
                         />
                     </div>
-                    {(winner || gotOld) && (
+                    {(room.winner || room.draw) && (
                         <button
                             type='button'
                             className='px-4 py-2 text-white text-bold bg-gray-300 rounded-full'

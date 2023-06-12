@@ -22,10 +22,12 @@ export interface Room {
 
 export interface ServerToClientEvents {
     play_client: (room: Room) => void;
+    reset_client: (room: Room) => void;
     join_room_client: (room: Room) => void;
 }
 
 export interface ClientToServerEvents {
     join_room: (e: { user: User; roomId: string }) => void;
     play: (e: { roomId: string; gameState: Options }) => void;
+    reset: (e: { roomId: string }) => void;
 }
