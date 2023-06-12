@@ -6,7 +6,7 @@ const enUSWords: Language['words'] = {
         selectGameMode: 'Select the game mode',
         localSinglePlayer: '1 Player',
         localMultiplayer: '2 Players',
-        multiplayer: 'Online - Soon',
+        multiplayer: 'Online - Alpha',
     },
     game: {
         reset: 'Reset',
@@ -19,6 +19,11 @@ const enUSWords: Language['words'] = {
         victory: 'Wow, congrats you won!',
         lose: 'Ops, you lost!',
         waitingCpu: 'Waiting computer...',
+    },
+    multiplayer: {
+        name: 'Insert your name',
+        room: "Insert room's name",
+        enterRoom: 'Enter room',
     },
 };
 

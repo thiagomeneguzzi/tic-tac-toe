@@ -6,7 +6,7 @@ const ptBRWords: Language['words'] = {
         selectGameMode: 'Selecione o modo de jogo',
         localSinglePlayer: '1 Jogador',
         localMultiplayer: '2 Jogadores',
-        multiplayer: 'Online - Em breve',
+        multiplayer: 'Online - Alfa',
     },
     game: {
         reset: 'Reiniciar',
@@ -19,6 +19,11 @@ const ptBRWords: Language['words'] = {
         victory: 'Uau, parabéns você ganhou!',
         lose: 'Ops, você perdeu!',
         waitingCpu: 'Aguardando computador...',
+    },
+    multiplayer: {
+        name: 'Insira seu nome',
+        room: 'Insira o nome da sala',
+        enterRoom: 'Entrar na sala',
     },
 };
 

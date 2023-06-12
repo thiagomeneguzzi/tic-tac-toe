@@ -27,6 +27,11 @@ export type Language = {
         localMultiplayerGame: {
             victory: string;
         };
+        multiplayer: {
+            name: string;
+            room: string;
+            enterRoom: string;
+        };
     };
     languages: {
         usaEnglish: LanguageCodeLabel;
