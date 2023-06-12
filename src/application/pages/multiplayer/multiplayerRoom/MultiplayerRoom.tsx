@@ -15,7 +15,7 @@ const MultiplayerRoom = () => {
 
     const socket: Socket<ServerToClientEvents, ClientToServerEvents> = useMemo(
         () =>
-            io('http://localhost:3000', {
+            io('https://app-thiagomeneguzzi.cloud.okteto.net/', {
                 transports: ['websocket'],
             }),
         [],
