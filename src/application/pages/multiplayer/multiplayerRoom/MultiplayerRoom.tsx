@@ -5,8 +5,7 @@ import { useLanguage } from '../../../provider/LanguageProvider/LanguageProvider
 
 import GameBoard from '../../../components/GameBoard/GameBoard';
 
-import { initialValue } from '../../../../utils/consts/game';
-import { ClientToServerEvents, Options, Room, ServerToClientEvents } from '../../../../utils/types/game';
+import { ClientToServerEvents, Room, ServerToClientEvents } from '../../../../utils/types/game';
 
 const MultiplayerRoom = () => {
     const {
@@ -71,9 +70,6 @@ const MultiplayerRoom = () => {
             socket.disconnect();
         };
     }, []);
-    console.log({ room });
-
-    const [turnOption] = useState<'X' | 'O'>('X');
 
     const playerTurn = room.turn.user.userName === name;
 
